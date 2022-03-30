@@ -6,6 +6,7 @@ use App\Repository\RoomBedRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: RoomBedRepository::class)]
 class RoomBed
@@ -13,15 +14,18 @@ class RoomBed
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+	#[Groups("read:Housing")]
     private $id;
 
     #[ORM\ManyToMany(targetEntity: Room::class, mappedBy: 'beds')]
     private $rooms;
 
     #[ORM\Column(type: 'integer')]
+	#[Groups("read:Housing")]
     private $quantity;
 
     #[ORM\ManyToMany(targetEntity: Bed::class, inversedBy: 'roomBeds')]
+	#[Groups("read:Housing")]
     private $type;
 
     public function __construct()

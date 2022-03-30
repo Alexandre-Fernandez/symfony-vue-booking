@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
 		$simpleBed = new Bed();
 		$simpleBed
 			->setPlaces(1)
-			->setType("Simple Bed")
+			->setName("Simple Bed")
 		;
 		$manager->persist($simpleBed);
 

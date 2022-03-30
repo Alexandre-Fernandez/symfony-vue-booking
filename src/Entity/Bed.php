@@ -6,6 +6,7 @@ use App\Repository\BedRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BedRepository::class)]
 class Bed
@@ -16,9 +17,11 @@ class Bed
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $type;
+	#[Groups("read:Housing")]
+    private $name;
 
     #[ORM\Column(type: 'integer')]
+	#[Groups("read:Housing")]
     private $places;
 
     #[ORM\ManyToMany(targetEntity: RoomBed::class, mappedBy: 'type')]
@@ -34,14 +37,14 @@ class Bed
         return $this->id;
     }
 
-    public function getType(): ?string
+    public function getName(): ?string
     {
-        return $this->type;
+        return $this->name;
     }
 
-    public function setType(string $type): self
+    public function setName(string $name): self
     {
-        $this->type = $type;
+        $this->name = $name;
 
         return $this;
     }

@@ -7,6 +7,7 @@ use App\Repository\HousingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: HousingRepository::class)]
 #[ApiResource(
@@ -19,25 +20,32 @@ class Housing
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+	#[Groups("read:Housing")]
     private $id;
 
     #[ORM\Column(type: 'integer')]
+	#[Groups("read:Housing")]
     private $size;
 
     #[ORM\Column(type: 'string', length: 255)]
+	#[Groups("read:Housing")]
     private $street;
 
     #[ORM\Column(type: 'string', length: 255)]
+	#[Groups("read:Housing")]
     private $city;
 
     #[ORM\Column(type: 'string', length: 255)]
+	#[Groups("read:Housing")]
     private $zip;
 
     #[ORM\Column(type: 'string', length: 255)]
+	#[Groups("read:Housing")]
     private $country;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'housings')]
     #[ORM\JoinColumn(nullable: false)]
+	#[Groups("read:Housing")]
     private $user;
 
     #[ORM\OneToMany(mappedBy: 'housing', targetEntity: Rental::class)]
@@ -45,6 +53,7 @@ class Housing
 
     #[ORM\ManyToOne(targetEntity: HousingType::class, inversedBy: 'housings')]
     #[ORM\JoinColumn(nullable: false)]
+	#[Groups("read:Housing")]
     private $type;
 
     #[ORM\OneToMany(mappedBy: 'housing', targetEntity: HousingImage::class)]
@@ -57,6 +66,7 @@ class Housing
     private $ads;
 
     #[ORM\ManyToMany(targetEntity: Room::class, inversedBy: 'housings')]
+	#[Groups("read:Housing")]
     private $rooms;
 
     public function __construct()
