@@ -7,7 +7,7 @@
 			</ul>
 		</nav>
 	</header>
-	<main class="p-6">
+	<main class="flex justify-center items-center p-6">
 		<router-view></router-view>
 	</main>
 </template>
