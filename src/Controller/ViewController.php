@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class ViewController extends AbstractController
 {
-    #[Route('/{all}', name: 'app_view')]
+    #[Route('/{spa<((?!api).)*>}', name: 'app_view')]
     public function index(): Response
     {
         return $this->render('base.html.twig');
