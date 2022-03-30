@@ -1,10 +1,26 @@
 <script lang="ts">
-import { defineComponent } from "vue"
+import { computed, defineComponent } from "vue"
+import { useRoute } from "vue-router"
+import MainLayout from "./layouts/MainLayout.vue"
+
 export default defineComponent({
-	name: "App",
+	components: {
+		MainLayout,
+	},
+	setup() {
+		const route = useRoute()
+		const currentLayout = computed(
+			() => (route.meta?.layout as string) || "MainLayout"
+		)
+		return {
+			currentLayout,
+		}
+	},
 })
 </script>
 
 <template>
-	<h1>Home</h1>
+	<div>
+		<component :is="currentLayout" />
+	</div>
 </template>
