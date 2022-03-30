@@ -9,19 +9,19 @@ final class UserRegisterInput
 {
     #[Assert\NotBlank]
     #[Assert\Email]
-	#[Groups("user:write")]
+	#[Groups("write:User")]
     private string $email;
 
     #[Assert\NotBlank]
-	#[Groups("user:write")]
+	#[Groups("write:User")]
     private string $password;
 
 	#[Assert\NotBlank]
-	#[Groups("user:write")]
+	#[Groups("write:User")]
     private $firstName;
 
 	#[Assert\NotBlank]
-	#[Groups("user:write")]
+	#[Groups("write:User")]
     private $lastName;
 
 

@@ -42,8 +42,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 			'security' => 'is_granted("ROLE_ADMIN")',
 		],
 	],
-	denormalizationContext: ["groups" => ["user:write"]],
-	normalizationContext: ["groups" => ["user:read"]],
+	denormalizationContext: ["groups" => ["write:User"]],
+	normalizationContext: ["groups" => ["read:User"]],
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, JWTUserInterface
 {
@@ -53,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, JWTUser
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-	#[Groups("user:read", "user:write")]
+	#[Groups("read:User", "write:User")]
     private $email;
 
     #[ORM\Column(type: 'json')]
@@ -63,11 +63,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, JWTUser
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-	#[Groups("user:read", "user:write")]
+	#[Groups("read:User", "write:User")]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-	#[Groups("user:read", "user:write")]
+	#[Groups("read:User", "write:User")]
     private $lastName;
 
     #[ORM\Column(type: 'datetime_immutable')]
