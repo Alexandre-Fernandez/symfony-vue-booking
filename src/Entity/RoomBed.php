@@ -15,9 +15,6 @@ class RoomBed
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $beds;
-
     #[ORM\ManyToMany(targetEntity: Room::class, mappedBy: 'beds')]
     private $rooms;
 
@@ -36,18 +33,6 @@ class RoomBed
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getBeds(): ?int
-    {
-        return $this->beds;
-    }
-
-    public function setBeds(int $beds): self
-    {
-        $this->beds = $beds;
-
-        return $this;
     }
 
     /**
