@@ -1,5 +1,6 @@
 {
 	"devDependencies": {
+		"@api-platform/client-generator": "^0.7.3",
 		"@babel/core": "^7.17.8",
 		"@hotwired/stimulus": "^3.0.0",
 		"@symfony/stimulus-bridge": "^3.0.0",
@@ -10,6 +11,9 @@
 		"@vue/cli-service": "^5.0.4",
 		"autoprefixer": "^10.4.4",
 		"core-js": "^3.0.0",
+		"cross-env": "^7.0.3",
+		"openapi-typescript": "^5.2.0",
+		"openapi-typescript-fetch": "^1.1.2",
 		"postcss": "^8.4.12",
 		"postcss-loader": "^6.2.1",
 		"regenerator-runtime": "^0.13.2",
@@ -23,7 +27,8 @@
 		"dev-server": "encore dev-server",
 		"dev": "encore dev",
 		"watch": "encore dev --watch",
-		"build": "encore production --progress"
+		"build": "encore production --progress",
+		"make-types": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 npx openapi-typescript https://localhost:8000/api/docs.json --output vue/types/api.ts"
 	},
 	"dependencies": {
 		"pinia": "^2.0.12",
